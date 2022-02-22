@@ -9,8 +9,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class DtoUsuario {
     private Long id;
-    private String nombre;
-    private String clave;
-    private LocalDateTime fechaCreacion;
+	private String nombre;
+	private String apellido;
+	private Long numeroDocumento;
+	private Integer reservasAcumulado;
+	private Long categoriaId;
+	private LocalDateTime fechaCreacion;
 
 }

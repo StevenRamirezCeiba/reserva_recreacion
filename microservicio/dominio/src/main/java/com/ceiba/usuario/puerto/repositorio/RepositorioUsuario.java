@@ -1,5 +1,6 @@
 package com.ceiba.usuario.puerto.repositorio;
 
+import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 
 public interface RepositorioUsuario {
@@ -34,5 +35,18 @@ public interface RepositorioUsuario {
      * @return si existe o no
      */
     boolean existePorId(Long id);
+    
+    /**
+     * Permite encontrar un usuario por id
+     * @return usuario encontrado
+     * @param id
+     */
+    DtoUsuario encontrarPorId(Long id);
+    
+    /**
+     * Reinicia el valor de reservasAcumulado
+     * @param id
+     */
+    void reinicioReservasAcumulado(Long id);
 
 }

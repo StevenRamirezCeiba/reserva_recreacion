@@ -1,4 +1,4 @@
-package com.ceiba.reserva.servicio.testdatabuilder;
+package com.ceiba.usuario.servicio.testdatabuilder;
 
 import java.time.LocalDateTime;
 
@@ -7,14 +7,16 @@ import com.ceiba.usuario.modelo.entidad.Reserva;
 public class ReservaTestDataBuilder {
 
 	private Long id;
-	private Double valor;
+	private Long valor;
 	private LocalDateTime fechaReserva;
 	private Long usuarioId;
+	private Long reservaEstadoId;
 	
 	public ReservaTestDataBuilder() {
-		valor = 50000D;
+		valor = 50000L;
 		fechaReserva = LocalDateTime.now().plusDays(3);
 		usuarioId = 1L;
+		reservaEstadoId = 1L;
 	}
 	
 	public ReservaTestDataBuilder conId(Long id) {
@@ -22,7 +24,7 @@ public class ReservaTestDataBuilder {
 		return this;
 	}
 	
-	public ReservaTestDataBuilder conValor(Double valor) {
+	public ReservaTestDataBuilder conValor(Long valor) {
 		this.valor = valor;
 		return this;
 	}
@@ -37,7 +39,12 @@ public class ReservaTestDataBuilder {
 		return this;
 	}
 	
+	public ReservaTestDataBuilder conReservaEstadoId(Long reservaEstadoId) {
+		this.reservaEstadoId = reservaEstadoId;
+		return this;
+	}
+	
 	public Reserva build() {
-		return new Reserva(id, valor, fechaReserva, usuarioId);
+		return new Reserva(id, valor, fechaReserva, usuarioId, reservaEstadoId);
 	}
 }

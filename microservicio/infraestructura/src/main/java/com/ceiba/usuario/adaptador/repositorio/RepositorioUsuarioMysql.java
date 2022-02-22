@@ -2,6 +2,7 @@ package com.ceiba.usuario.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -26,6 +27,12 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
 
     @SqlStatement(namespace="usuario", value="existePorId")
     private static String sqlExistePorId;
+    
+    @SqlStatement(namespace="usuario", value="encontrarPorId")
+    private static String sqlEncontrarPorId;
+    
+    @SqlStatement(namespace="usuario", value="reinicioReservasAcumulado")
+    private static String sqlReinicioReservasAcumulado;
 
     public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -63,5 +70,21 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
         paramSource.addValue("id", id);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,paramSource, Boolean.class);
+    }
+    
+    @Override
+    public DtoUsuario encontrarPorId(Long id) {
+    	MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrarPorId,paramSource, DtoUsuario.class);
+    }
+    
+    @Override
+    public void reinicioReservasAcumulado(Long id) {
+    	MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlReinicioReservasAcumulado, paramSource);
     }
 }

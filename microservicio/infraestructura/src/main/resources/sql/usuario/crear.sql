@@ -1,1 +1,1 @@
-insert into usuario (nombre, clave,fecha_creacion) values (:nombre, :clave, :fechaCreacion)
+insert into usuario (nombre, clave, apellido, numero_documento, reservas_acumulado, fecha_creacion, categoria_id) values (:nombre, :clave, :apellido, :numeroDocumento, :reservasAcumulado, :fechaCreacion, :categoriaId)

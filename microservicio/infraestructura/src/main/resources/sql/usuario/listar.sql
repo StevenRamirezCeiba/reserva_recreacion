@@ -1,2 +1,2 @@
-select id,nombre,clave,fecha_creacion
+select id,nombre,apellido,numero_documento,reservas_acumulado,fecha_creacion,categoria_id
 from usuario
