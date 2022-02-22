@@ -2,6 +2,7 @@ package com.ceiba.usuario.entidad;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.DisplayName;
@@ -18,77 +19,88 @@ public class ReservaTest {
 	@Test
 	@DisplayName("Deberia crear correctamente la reserva")
 	void deberiaCrearCorrectamenteLaReserva() {
-		
-		//arrange
+		// arrange
 		LocalDateTime fechaReserva = LocalDateTime.now().plusDays(3);
-		//act
+		// act
 		Reserva reserva = new ReservaTestDataBuilder().conFechaReserva(fechaReserva).conId(1L).build();
-		//assert
+		// assert
 		assertEquals(1, reserva.getId());
-		assertEquals(50000, reserva.getValor());
+		assertEquals(new BigDecimal(50000), reserva.getValor());
 		assertEquals(fechaReserva, reserva.getFechaReserva());
 		assertEquals(1, reserva.getUsuarioId());
 	}
-	
+
 	@Test
 	void deberiaFallarSinValor() {
-		//arrange
+		// arrange
 		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conValor(null).conId(1L);
-		//act-assert
+		// act-assert
 		BasePrueba.assertThrows(() -> {
 			reservaTestDataBuilder.build();
 		}, ExcepcionValorObligatorio.class, "Se debe ingresar el valor");
 	}
-	
+
 	@Test
 	void deberiaFallarConValorNegativo() {
-		//arrange
-		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conValor(-50000L).conId(1L);
-		//act-assert
+		// arrange
+		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conValor(new BigDecimal(-50000))
+				.conId(1L);
+		// act-assert
 		BasePrueba.assertThrows(() -> {
 			reservaTestDataBuilder.build();
 		}, ExcepcionValorInvalido.class, "El valor debe ser un numero real positivo");
 	}
-	
+
 	@Test
 	void deberiaFallarSinFechaReserva() {
-		//arrange
+		// arrange
 		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conFechaReserva(null).conId(1L);
-		//act-assert
+		// act-assert
 		BasePrueba.assertThrows(() -> {
 			reservaTestDataBuilder.build();
 		}, ExcepcionValorObligatorio.class, "Se debe ingresar la fecha de reserva");
 	}
-	
+
 	@Test
 	void deberiaFallarSiFechaReservaEsMenorAFechaActual() {
-		//arrange
+		// arrange
 		LocalDateTime fechaReserva = LocalDateTime.now().minusHours(3);
-		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conFechaReserva(fechaReserva).conId(1L);
-		//act-assert
+		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conFechaReserva(fechaReserva)
+				.conId(1L);
+		// act-assert
 		BasePrueba.assertThrows(() -> {
 			reservaTestDataBuilder.build();
 		}, ExcepcionValorInvalido.class, "La fecha de reserva debe ser mayor a la fecha actual");
 	}
-	
+
 	@Test
 	void deberiaFallarSinUsuarioId() {
-		//arrange
+		// arrange
 		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conUsuarioId(null).conId(1L);
-		//act-assert
+		// act-assert
 		BasePrueba.assertThrows(() -> {
 			reservaTestDataBuilder.build();
 		}, ExcepcionValorObligatorio.class, "Se debe ingresar el usuarioId");
 	}
-	
+
 	@Test
 	void deberiaFallarSinReservaEstadoId() {
-		//arrange
+		// arrange
 		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conReservaEstadoId(null).conId(1L);
-		//act-assert
+		// act-assert
 		BasePrueba.assertThrows(() -> {
 			reservaTestDataBuilder.build();
 		}, ExcepcionValorObligatorio.class, "Se debe ingresar el reservaEstadoId");
 	}
-	
+
+	@Test
+	void deberiaAplicarDescuentoAlValor() {
+		// arrange
+		Reserva reserva = new ReservaTestDataBuilder().conId(1L).build();
+		// act
+		reserva.realizarDescuento(new BigDecimal(30));
+		// assert
+		assertEquals(new BigDecimal("35000.0"), reserva.getValor());
+	}
+
 }

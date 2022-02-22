@@ -2,7 +2,7 @@
 CREATE TABLE categoria (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(100) NOT NULL,
-  tarifa INT NOT NULL,
+  tarifa DECIMAL(20,2) NOT NULL,
   PRIMARY KEY (id)
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE reserva_estado (
 
 CREATE TABLE reserva (
   id INT NOT NULL AUTO_INCREMENT,
-  valor INT NOT NULL,
+  valor DECIMAL(20,2) NOT NULL,
   fecha_creacion DATETIME NOT NULL,
   fecha_reserva DATETIME NOT NULL,
   usuario_id INT NOT NULL,
@@ -40,11 +40,11 @@ CREATE TABLE reserva (
 -- Insertar valores por defecto
 
 -- categoria
-INSERT INTO reserva_recreacion.categoria(nombre, tarifa) VALUES('BRONCE', 50000);
+INSERT INTO categoria(nombre, tarifa) VALUES('BRONCE', 50000);
 
 -- reserva_estado
-INSERT INTO reserva_recreacion.reserva_estado(nombre) VALUES('CONFIRMADA');
-INSERT INTO reserva_recreacion.reserva_estado(nombre) VALUES('CANCELADA');
+INSERT INTO reserva_estado(nombre) VALUES('CONFIRMADA');
+INSERT INTO reserva_estado(nombre) VALUES('CANCELADA');
 
 -- usuario
-INSERT INTO reserva_recreacion.usuario(clave, nombre, apellido, numero_documento, reservas_acumulado, fecha_creacion, categoria_id) VALUES('12345', 'CHRISTIAN', 'RAMIREZ', 1075318997, 0, NOW(), 1);
+INSERT INTO usuario(clave, nombre, apellido, numero_documento, reservas_acumulado, fecha_creacion, categoria_id) VALUES('12345', 'CHRISTIAN', 'RAMIREZ', 1075318997, 0, NOW(), 1);

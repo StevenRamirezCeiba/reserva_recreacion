@@ -5,6 +5,8 @@ import lombok.Getter;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import static com.ceiba.dominio.ValidadorArgumento.validarPositivo;
 
+import java.math.BigDecimal;
+
 @Getter
 public class Categoria {
 	
@@ -14,12 +16,12 @@ public class Categoria {
 
 	private Long id;
 	private String nombre;
-	private Double tarifa;
+	private BigDecimal tarifa;
 	
-	public Categoria(Long id, String nombre, Double tarifa) {
+	public Categoria(Long id, String nombre, BigDecimal tarifa) {
 		validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
 		validarObligatorio(tarifa, SE_DEBE_INGRESAR_LA_TARIFA);
-		validarPositivo(tarifa, LA_TARIFA_DEBE_SER_UN_NUMERO_REAL_POSITIVO);
+		validarPositivo(tarifa.doubleValue() , LA_TARIFA_DEBE_SER_UN_NUMERO_REAL_POSITIVO);
 		
 		this.id = id;
 		this.nombre = nombre;

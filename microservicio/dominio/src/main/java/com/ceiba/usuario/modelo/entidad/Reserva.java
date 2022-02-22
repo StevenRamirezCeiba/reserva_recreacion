@@ -1,5 +1,6 @@
 package com.ceiba.usuario.modelo.entidad;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import lombok.Getter;
@@ -19,15 +20,15 @@ public class Reserva {
 	private static final String SE_DEBE_INGRESAR_RESERVA_ESTADO_ID = "Se debe ingresar el reservaEstadoId";
 	
 	private Long id;
-	private Long valor;
+	private BigDecimal valor;
 	private LocalDateTime fechaCreacion;
 	private LocalDateTime fechaReserva;
 	private Long usuarioId;
 	private Long reservaEstadoId;
 	
-	public Reserva(Long id, Long valor, LocalDateTime fechaReserva, Long usuarioId, Long reservaEstadoId) {
+	public Reserva(Long id, BigDecimal valor, LocalDateTime fechaReserva, Long usuarioId, Long reservaEstadoId) {
 		validarObligatorio(valor, SE_DEBE_INGRESAR_EL_VALOR);
-		validarPositivo(valor, EL_VALOR_DEBE_SER_UN_NUMERO_REAL_POSITIVO);
+		validarPositivo(valor.doubleValue(), EL_VALOR_DEBE_SER_UN_NUMERO_REAL_POSITIVO);
 		validarObligatorio(fechaReserva, SE_DEBE_INGRESAR_LA_FECHA_RESERVA);
 		validarMenor(LocalDateTime.now(), fechaReserva, LA_FECHA_DE_RESERVA_DEBE_SER_MAYOR_A_LA_FECHA_ACTUAL);
 		validarObligatorio(usuarioId, SE_DEBE_INGRESAR_USUARIO_ID);
@@ -41,8 +42,10 @@ public class Reserva {
 		this.reservaEstadoId = reservaEstadoId;
 	}
 	
-	public void descuentoPorReservasAcumulado(Integer valorDescuento) {
-		valor -= (valor * (valorDescuento / 100));
+	public void realizarDescuento(BigDecimal valorDescuento) {
+        BigDecimal porcentajeDescuento = valorDescuento.divide(new BigDecimal(100));
+        BigDecimal descuento = valor.multiply(porcentajeDescuento);
+	    valor = valor.subtract(descuento);
 	}
 	
 	

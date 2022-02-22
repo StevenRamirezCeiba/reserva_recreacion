@@ -1,5 +1,6 @@
 package com.ceiba.usuario.adaptador.dao;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
     public DtoReserva mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
     	Long id = resultSet.getLong("id");
-    	Long valor = resultSet.getLong("valor");
+    	BigDecimal valor = resultSet.getBigDecimal("valor");
     	LocalDateTime fechaCreacion = extraerLocalDateTime(resultSet, "fecha_creacion");
     	LocalDateTime fechaReserva = extraerLocalDateTime(resultSet, "fecha_reserva");
     	Long usuarioId = resultSet.getLong("usuario_id");;

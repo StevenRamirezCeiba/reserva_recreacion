@@ -19,8 +19,8 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @SqlStatement(namespace="reserva", value="crear")
     private static String sqlCrear;
 
-    @SqlStatement(namespace="reserva", value="actualizar")
-    private static String sqlActualizar;
+    @SqlStatement(namespace="reserva", value="eliminar")
+    private static String sqlEliminar;
 
     @SqlStatement(namespace="reserva", value="existePorFechaReserva")
     private static String sqlExistePorFechaReserva;
@@ -36,8 +36,11 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 
 
     @Override
-    public void actualizar(Reserva reserva) {
-        this.customNamedParameterJdbcTemplate.actualizar(reserva, sqlActualizar);
+    public void eliminar(Long id) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
     }
 
     @Override

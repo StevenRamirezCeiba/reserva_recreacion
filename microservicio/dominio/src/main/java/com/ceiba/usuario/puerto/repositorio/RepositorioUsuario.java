@@ -44,9 +44,9 @@ public interface RepositorioUsuario {
     DtoUsuario encontrarPorId(Long id);
     
     /**
-     * Reinicia el valor de reservasAcumulado
+     * Actualiza el valor de reservasAcumulado
      * @param id
      */
-    void reinicioReservasAcumulado(Long id);
+    void actualizarReservasAcumulado(Long id, Integer reservasAcumulado);
 
 }

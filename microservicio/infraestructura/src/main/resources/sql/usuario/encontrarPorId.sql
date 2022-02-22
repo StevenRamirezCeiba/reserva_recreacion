@@ -1,1 +1,1 @@
-select nombre,apellido,numero_documento,reservas_acumulado,categoria_id,fecha_creacion from usuario where id = :id
+select id,nombre,apellido,numero_documento,reservas_acumulado,categoria_id,fecha_creacion from usuario where id = :id

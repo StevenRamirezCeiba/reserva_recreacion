@@ -13,10 +13,10 @@ public interface RepositorioReserva {
     Long crear(Reserva reserva);
 
     /**
-     * Permite actualizar una reserva
-     * @param reserva
+     * Permite eliminar una reserva
+     * @param id
      */
-    void actualizar(Reserva reserva);
+    void eliminar(Long id);
 
     /**
      * Permite validar si existe una reserva en un dia en especifico

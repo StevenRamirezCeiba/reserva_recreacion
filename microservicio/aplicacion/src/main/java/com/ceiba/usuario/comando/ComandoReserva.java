@@ -1,5 +1,6 @@
 package com.ceiba.usuario.comando;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.Setter;
 public class ComandoReserva {
 
 	private Long id;
-	private Long valor;
+	private BigDecimal valor;
 	private LocalDateTime fechaReserva;
 	private Long usuarioId;
 	private Long reservaEstadoId;

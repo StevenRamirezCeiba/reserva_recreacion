@@ -2,6 +2,7 @@ package com.ceiba.usuario.adaptador.repositorio;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.usuario.adaptador.dao.MapeoUsuario;
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
@@ -31,8 +32,8 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @SqlStatement(namespace="usuario", value="encontrarPorId")
     private static String sqlEncontrarPorId;
     
-    @SqlStatement(namespace="usuario", value="reinicioReservasAcumulado")
-    private static String sqlReinicioReservasAcumulado;
+    @SqlStatement(namespace="usuario", value="actualizarReservasAcumulado")
+    private static String sqlActualizarReservasAcumulado;
 
     public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -68,7 +69,7 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     public boolean existePorId(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
-
+       
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,paramSource, Boolean.class);
     }
     
@@ -77,14 +78,15 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     	MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrarPorId,paramSource, DtoUsuario.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrarPorId, paramSource, new MapeoUsuario());
     }
     
     @Override
-    public void reinicioReservasAcumulado(Long id) {
+    public void actualizarReservasAcumulado(Long id, Integer reservasAcumulado) {
     	MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
+        paramSource.addValue("reservasAcumulado", reservasAcumulado);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlReinicioReservasAcumulado, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarReservasAcumulado, paramSource);
     }
 }

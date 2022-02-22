@@ -1,5 +1,6 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.ceiba.usuario.modelo.entidad.Reserva;
@@ -7,13 +8,13 @@ import com.ceiba.usuario.modelo.entidad.Reserva;
 public class ReservaTestDataBuilder {
 
 	private Long id;
-	private Long valor;
+	private BigDecimal valor;
 	private LocalDateTime fechaReserva;
 	private Long usuarioId;
 	private Long reservaEstadoId;
 	
 	public ReservaTestDataBuilder() {
-		valor = 50000L;
+		valor = new BigDecimal(50000);
 		fechaReserva = LocalDateTime.now().plusDays(3);
 		usuarioId = 1L;
 		reservaEstadoId = 1L;
@@ -24,7 +25,7 @@ public class ReservaTestDataBuilder {
 		return this;
 	}
 	
-	public ReservaTestDataBuilder conValor(Long valor) {
+	public ReservaTestDataBuilder conValor(BigDecimal valor) {
 		this.valor = valor;
 		return this;
 	}
