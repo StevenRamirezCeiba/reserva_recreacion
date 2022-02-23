@@ -5,11 +5,8 @@ import com.ceiba.manejador.ManejadorComandoRespuesta;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.comando.fabrica.FabricaReserva;
 import com.ceiba.reserva.modelo.entidad.Reserva;
-import com.ceiba.reserva.service.ServicioCrearReserva;
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.reserva.servicio.ServicioCrearReserva;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
 
 @Component
 public class ManejadorCrearReserva implements ManejadorComandoRespuesta<ComandoReserva, ComandoRespuesta<Long>> {

@@ -1,4 +1,4 @@
-package com.ceiba.reserva.service;
+package com.ceiba.reserva.servicio;
 
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 

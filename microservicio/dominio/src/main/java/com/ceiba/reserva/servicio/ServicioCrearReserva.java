@@ -1,4 +1,4 @@
-package com.ceiba.reserva.service;
+package com.ceiba.reserva.servicio;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
