@@ -41,10 +41,9 @@ CREATE TABLE reserva (
 
 -- categoria
 INSERT INTO categoria(nombre, tarifa) VALUES('BRONCE', 50000);
+INSERT INTO categoria(nombre, tarifa) VALUES('PLATA', 40000);
+INSERT INTO categoria(nombre, tarifa) VALUES('ORO', 30000);
 
 -- reserva_estado
 INSERT INTO reserva_estado(nombre) VALUES('CONFIRMADA');
 INSERT INTO reserva_estado(nombre) VALUES('CANCELADA');
-
--- usuario
-INSERT INTO usuario(clave, nombre, apellido, numero_documento, reservas_acumulado, fecha_creacion, categoria_id) VALUES('12345', 'CHRISTIAN', 'RAMIREZ', 1075318997, 0, NOW(), 1);

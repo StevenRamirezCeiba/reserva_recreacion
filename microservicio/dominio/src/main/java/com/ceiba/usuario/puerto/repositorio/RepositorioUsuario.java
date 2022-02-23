@@ -3,6 +3,8 @@ package com.ceiba.usuario.puerto.repositorio;
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 
+import java.math.BigDecimal;
+
 public interface RepositorioUsuario {
     /**
      * Permite crear un usuario
@@ -18,20 +20,14 @@ public interface RepositorioUsuario {
     void actualizar(Usuario usuario);
 
     /**
-     * Permite eliminar un usuario
-     * @param id
-     */
-    void eliminar(Long id);
-
-    /**
-     * Permite validar si existe un usuario con un nombre
-     * @param nombre
+     * Permite validar si existe un usuario con un numero de documento
+     * @param numeroDocumento
      * @return si existe o no
      */
-    boolean existe(String nombre);
+    boolean existePorNumeroDocumento(Long numeroDocumento);
 
     /**
-     * Permite validar si existe un usuario con un nombre excluyendo un id
+     * Permite validar si existe un usuario por su id
      * @return si existe o no
      */
     boolean existePorId(Long id);
@@ -48,5 +44,7 @@ public interface RepositorioUsuario {
      * @param id
      */
     void actualizarReservasAcumulado(Long id, Integer reservasAcumulado);
+
+    BigDecimal obtenerTarifaPorUsuarioId(Long id);
 
 }

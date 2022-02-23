@@ -14,7 +14,7 @@ import com.ceiba.infraestructura.error.ErrorHealthCheck;
 @Configuration
 public class ManejadorHealthCheckBloques {
 
-	private Map<String, Salud> bloquesRegistrados = new HashMap<>();
+	private final Map<String, Salud> bloquesRegistrados = new HashMap<>();
 	private List<ErrorHealthCheck> listadoErroresBloques = new ArrayList<>();
 	private static final Logger LOGGER_ERROR = LoggerFactory.getLogger(ManejadorHealthCheckBloques.class);
 	private static final String MENSAJE_ERROR_EN_BLOQUE = "Error de conexion con el bloque ";

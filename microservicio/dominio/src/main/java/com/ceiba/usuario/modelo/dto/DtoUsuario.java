@@ -1,5 +1,6 @@
 package com.ceiba.usuario.modelo.dto;
 
+import com.ceiba.usuario.modelo.entidad.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,5 +16,4 @@ public class DtoUsuario {
 	private Integer reservasAcumulado;
 	private Long categoriaId;
 	private LocalDateTime fechaCreacion;
-
 }

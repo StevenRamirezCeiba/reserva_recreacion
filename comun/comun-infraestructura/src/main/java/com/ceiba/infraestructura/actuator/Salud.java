@@ -14,12 +14,12 @@ public interface Salud  {
 	/**
 	 * Registra los bloques implementados
 	 */
-	public void registrarBloque();
+    void registrarBloque();
 	
 	/**
 	 * Valida la salud del bloque
 	 * @throws ExepcionBloqueSinServicio
 	 */
-	public void verificar() throws ExcepcionTecnica;//a�adir
+    void verificar() throws ExcepcionTecnica;//a�adir
 
 }

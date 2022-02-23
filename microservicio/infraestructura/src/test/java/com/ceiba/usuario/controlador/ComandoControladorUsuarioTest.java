@@ -57,21 +57,4 @@ class ComandoControladorUsuarioTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    @DisplayName("Deberia eliminar un usuario")
-    void deberiaEliminarUnUsuario() throws Exception {
-        // arrange
-        Long id = 1L;
-        // act - assert
-        mocMvc.perform(delete("/usuarios/{id}",id)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-
-        mocMvc.perform(get("/usuarios")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(0)));
-    }
-
 }

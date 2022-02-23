@@ -9,6 +9,10 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.List;
+
 @Repository
 public class RepositorioUsuarioMysql implements RepositorioUsuario {
 
@@ -23,8 +27,8 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @SqlStatement(namespace="usuario", value="eliminar")
     private static String sqlEliminar;
 
-    @SqlStatement(namespace="usuario", value="existe")
-    private static String sqlExiste;
+    @SqlStatement(namespace="usuario", value="existePorNumeroDocumento")
+    private static String sqlExistePorNumeroDocumento;
 
     @SqlStatement(namespace="usuario", value="existePorId")
     private static String sqlExistePorId;
@@ -34,6 +38,9 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     
     @SqlStatement(namespace="usuario", value="actualizarReservasAcumulado")
     private static String sqlActualizarReservasAcumulado;
+
+    @SqlStatement(namespace="usuario", value="obtenerTarifaPorUsuarioId")
+    private static String sqlObtenerTarifaPorUsuarioId;
 
     public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -45,19 +52,11 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public boolean existePorNumeroDocumento(Long numeroDocumento) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
+        paramSource.addValue("numeroDocumento", numeroDocumento);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
-    }
-
-    @Override
-    public boolean existe(String nombre) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nombre", nombre);
-
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorNumeroDocumento,paramSource, Boolean.class);
     }
 
     @Override
@@ -88,5 +87,14 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
         paramSource.addValue("reservasAcumulado", reservasAcumulado);
 
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarReservasAcumulado, paramSource);
+    }
+
+    @Override
+    public BigDecimal obtenerTarifaPorUsuarioId(Long id) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerTarifaPorUsuarioId, paramSource, BigDecimal.class);
+
     }
 }

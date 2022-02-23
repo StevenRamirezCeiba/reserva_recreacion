@@ -1,11 +1,11 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioReserva;
+import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
+import com.ceiba.reserva.service.ServicioEliminarReserva;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.ServicioCrearReserva;
+import com.ceiba.reserva.service.ServicioCrearReserva;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,11 +18,6 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioEliminarUsuario servicioEliminarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioEliminarUsuario(repositorioUsuario);
-    }
-
-    @Bean
     public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioActualizarUsuario(repositorioUsuario);
     }
@@ -30,5 +25,10 @@ public class BeanServicio {
     @Bean
     public ServicioCrearReserva servicioCrearReserva(RepositorioReserva repositorioReserva, RepositorioUsuario repositorioUsuario) {
     	return new ServicioCrearReserva(repositorioReserva, repositorioUsuario);
+    }
+
+    @Bean
+    public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva) {
+        return new ServicioEliminarReserva(repositorioReserva);
     }
 }

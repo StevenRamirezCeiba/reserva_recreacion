@@ -1,6 +1,9 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
+import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.modelo.entidad.Usuario;
+
+import java.time.LocalDateTime;
 
 
 public class UsuarioTestDataBuilder {
@@ -12,6 +15,7 @@ public class UsuarioTestDataBuilder {
 	private Long numeroDocumento;
 	private Integer reservasAcumulado;
 	private Long categoriaId;
+    private LocalDateTime fechaCreacion;
 
     public UsuarioTestDataBuilder() {
     	nombre = "christian";
@@ -20,6 +24,7 @@ public class UsuarioTestDataBuilder {
         numeroDocumento = 1075318997L;
         reservasAcumulado = 0;
         categoriaId = 1L;
+        fechaCreacion = LocalDateTime.now();
     }
 
     public UsuarioTestDataBuilder conClave(String clave) {
@@ -59,5 +64,9 @@ public class UsuarioTestDataBuilder {
 
     public Usuario build() {
         return new Usuario(id, nombre, apellido, clave, numeroDocumento, reservasAcumulado, categoriaId);
+    }
+
+    public DtoUsuario buildDto() {
+        return new DtoUsuario(id, nombre, apellido, numeroDocumento, reservasAcumulado, categoriaId, fechaCreacion);
     }
 }

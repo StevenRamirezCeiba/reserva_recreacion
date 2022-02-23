@@ -20,7 +20,7 @@ public class DataAccessFieldCallback implements FieldCallback {
 	/**
 	 * Propiedades
 	 */
-	private Object bean;
+	private final Object bean;
 
 	/**
 	 * Constructor
