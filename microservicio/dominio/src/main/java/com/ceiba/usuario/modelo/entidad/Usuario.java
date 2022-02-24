@@ -1,7 +1,6 @@
 package com.ceiba.usuario.modelo.entidad;
 
 import lombok.Getter;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +9,6 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMaxima;
 
 @Getter
-@ToString
 public class Usuario {
 
 	private static final String LA_CLAVE_DEBE_TENER_UNA_LONGITUD_MAYOR_O_IGUAL_A = "La clave debe tener una longitud mayor o igual a %s";
@@ -36,8 +34,9 @@ public class Usuario {
 	private Long categoriaId;
 	private LocalDateTime fechaCreacion;
 
+
 	public Usuario(Long id, String nombre, String apellido, String clave, Long numeroDocumento,
-			Integer reservasAcumulado, Long categoriaId) {
+				   Integer reservasAcumulado, Long categoriaId) {
 		validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
 		validarObligatorio(apellido, SE_DEBE_INGRESAR_EL_APELLIDO);
 		validarObligatorio(clave, SE_DEBE_INGRESAR_LA_CLAVE);
@@ -60,5 +59,4 @@ public class Usuario {
 		this.categoriaId = categoriaId;
 		this.fechaCreacion = LocalDateTime.now();
 	}
-
 }

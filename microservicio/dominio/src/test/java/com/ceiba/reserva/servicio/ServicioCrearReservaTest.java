@@ -50,8 +50,9 @@ public class ServicioCrearReservaTest {
     @Test
     @DisplayName("Deberia asignar el valor de la tarifa por usuario")
     void deberiaAsignarElValorDeLaTarifaPorUsuario() {
-        //arramge
-        Reserva reserva = new ReservaTestDataBuilder().build();
+        //arrange
+        LocalDateTime fechaReserva = LocalDateTime.now().plusDays(3).withHour(12);
+        Reserva reserva = new ReservaTestDataBuilder().conId(1L).conFechaReserva(fechaReserva).build();
         DtoUsuario dtoUsuario = new UsuarioTestDataBuilder().conId(1L).buildDto();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
