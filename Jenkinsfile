@@ -51,7 +51,7 @@ pipeline {
     stage('Static Code Analysis') {
         steps{
             sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:reserva.steven.ramirez',
-            sonarName:'CeibaADN-Reserva(steven.ramirez)',
+            sonarName:'''"CeibaADN-Reserva(steven.ramirez)"''',
             sonarPathProperties:'./sonar-project.properties')
         }
     }
