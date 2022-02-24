@@ -19,6 +19,7 @@ public class ServicioCrearReserva {
 	private static final int CANTIDAD_RESERVAS_ACUMULADO_PARA_DESCUENTO = 3;
 	private static final BigDecimal VALOR_DESCUENTO_RESERVAS_ACUMULADO = new BigDecimal(30);
 	private static final BigDecimal VALOR_DESCUENTO_HORA_RESERVA = new BigDecimal(20);
+    private static final String HORA_APLICACION_DESCUENTO = "18:00:00";
 
 	private final RepositorioReserva repositorioReserva;
     private final RepositorioUsuario repositorioUsuario;
@@ -72,7 +73,7 @@ public class ServicioCrearReserva {
     
     private void validarDescuentoPorHoraReserva(Reserva reserva) {
     	LocalTime fechaReserva = reserva.getFechaReserva().toLocalTime();
-    	LocalTime horaParaDescuento = LocalTime.parse("18:00:00");
+    	LocalTime horaParaDescuento = LocalTime.parse(HORA_APLICACION_DESCUENTO);
     	if (fechaReserva.isAfter(horaParaDescuento)) {
     		reserva.realizarDescuento(VALOR_DESCUENTO_HORA_RESERVA);
     	}
