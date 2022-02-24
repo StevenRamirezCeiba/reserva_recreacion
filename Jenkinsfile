@@ -39,7 +39,7 @@ pipeline {
         echo "------------>Clean Tests<------------"
 
         sh 'chmod +x comun/gradlew'
-        sh './gradlew --b reserva/build.gradle clean'
+        sh './gradlew --b microservicio/build.gradle clean'
 
         echo "------------>Compile & Unit Tests<------------"
         sh 'chmod +x gradlew'
