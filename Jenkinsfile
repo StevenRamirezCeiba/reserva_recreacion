@@ -1,4 +1,4 @@
-@Library('ceiba-jenkins-library')
+@Library('ceiba-jenkins-library')_
 pipeline {
   //Donde se va a ejecutar el Pipeline
   agent {
@@ -50,7 +50,7 @@ pipeline {
 
     stage('Static Code Analysis') {
         steps{
-            	sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:reserva.steven.ramirez',
+            sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:reserva.steven.ramirez',
             sonarName:'CeibaADN-Reserva(steven.ramirez)',
             sonarPathProperties:'./sonar-project.properties')
         }
