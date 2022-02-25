@@ -36,6 +36,6 @@ public class DaoUsuarioMysql implements DaoUsuario {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("numeroDocumento", numeroDocumento);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrarPorNumeroDocumento,paramSource, new MapeoUsuario());
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrarPorNumeroDocumento,paramSource, new MapeoUsuario(true));
     }
 }
