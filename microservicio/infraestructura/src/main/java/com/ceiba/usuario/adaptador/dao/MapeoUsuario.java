@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class MapeoUsuario implements RowMapper<DtoUsuario>, MapperResult {
 
-    private boolean isCategoriaNombre;
+    private final boolean isCategoriaNombre;
 
     public MapeoUsuario(boolean isCategoriaNombre) {
         this.isCategoriaNombre = isCategoriaNombre;
@@ -32,7 +32,8 @@ public class MapeoUsuario implements RowMapper<DtoUsuario>, MapperResult {
         String categoriaNombre = null;
         LocalDateTime fecha = extraerLocalDateTime(resultSet, "fecha_creacion");
 
-        if (isCategoriaNombre) categoriaNombre = resultSet.getString("categoria_nombre");
+        if (isCategoriaNombre)
+            categoriaNombre = resultSet.getString("categoria_nombre");
 
 
         return new DtoUsuario(id,nombre,apellido,numeroDocumento,reservasAcumulado,categoriaId,categoriaNombre,fecha);
