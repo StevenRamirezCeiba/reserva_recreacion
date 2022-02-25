@@ -67,6 +67,6 @@ public class UsuarioTestDataBuilder {
     }
 
     public DtoUsuario buildDto() {
-        return new DtoUsuario(id, nombre, apellido, numeroDocumento, reservasAcumulado, categoriaId, fechaCreacion);
+        return new DtoUsuario(id, nombre, apellido, numeroDocumento, reservasAcumulado, categoriaId, null, fechaCreacion);
     }
 }

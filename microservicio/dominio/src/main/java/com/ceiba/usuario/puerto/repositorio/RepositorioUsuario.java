@@ -20,18 +20,18 @@ public interface RepositorioUsuario {
     void actualizar(Usuario usuario);
 
     /**
-     * Permite validar si existe un usuario con un numero de documento
-     * @param numeroDocumento
-     * @return si existe o no
-     */
-    boolean existePorNumeroDocumento(Long numeroDocumento);
-
-    /**
      * Permite validar si existe un usuario por su id
      * @return si existe o no
      */
     boolean existePorId(Long id);
-    
+
+    /**
+     * Permite validar si existe un usuario por su numero de documento
+     * @param numeroDocumento
+     * @return
+     */
+    boolean existePorNumeroDocumento(Long numeroDocumento);
+
     /**
      * Permite encontrar un usuario por id
      * @return usuario encontrado
@@ -45,6 +45,11 @@ public interface RepositorioUsuario {
      */
     void actualizarReservasAcumulado(Long id, Integer reservasAcumulado);
 
+    /**
+     * Obtiene la tarifa del usuario por su id
+     * @param id
+     * @return
+     */
     BigDecimal obtenerTarifaPorUsuarioId(Long id);
 
 }

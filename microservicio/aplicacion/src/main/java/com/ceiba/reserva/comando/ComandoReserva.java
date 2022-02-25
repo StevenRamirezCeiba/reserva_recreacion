@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 public class ComandoReserva {
 
 	private Long id;
-	private BigDecimal valor = new BigDecimal(0);
+	private BigDecimal valor;
+	private LocalDateTime fechaCreacion;
 	private LocalDateTime fechaReserva;
 	private Long usuarioId;
 	private Long reservaEstadoId;

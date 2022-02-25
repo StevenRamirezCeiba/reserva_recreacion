@@ -5,6 +5,7 @@ import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ComandoReservaTestDataBuilder;
 import com.ceiba.usuario.comando.ComandoUsuario;
 import com.ceiba.usuario.controlador.ComandoControladorUsuario;
+import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,19 @@ class ComandoControladorReservaTest {
                 .content(objectMapper.writeValueAsString(reserva)))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
+    }
+
+    @Test
+    @DisplayName("Deberia actualizar una reserva")
+    void deberiaActualizarUnaReserva() throws Exception{
+        // arrange
+        Long id = 1L;
+        ComandoReserva reserva = new ComandoReservaTestDataBuilder().build();
+        // act - assert
+        mocMvc.perform(put("/reservas/{id}",id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(reserva)))
+                .andExpect(status().isOk());
     }
 
     @Test

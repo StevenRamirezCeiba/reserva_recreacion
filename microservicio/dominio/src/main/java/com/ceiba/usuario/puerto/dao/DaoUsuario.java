@@ -11,4 +11,11 @@ public interface DaoUsuario {
      * @return los usuarios
      */
     List<DtoUsuario> listar();
+
+    /**
+     * Encuenta un usuario por su numero de documento
+     * @param numeroDocumento
+     * @return
+     */
+    DtoUsuario encontrarPorNumeroDocumento(Long numeroDocumento);
 }

@@ -11,6 +11,7 @@ public class FabricaReserva {
         return new Reserva(
         		comandoReserva.getId(),
         		comandoReserva.getValor(),
+				comandoReserva.getFechaCreacion(),
         		comandoReserva.getFechaReserva(),
         		comandoReserva.getUsuarioId(),
         		comandoReserva.getReservaEstadoId());

@@ -14,5 +14,6 @@ public class DtoUsuario {
 	private Long numeroDocumento;
 	private Integer reservasAcumulado;
 	private Long categoriaId;
+	private String categoriaNombre;
 	private LocalDateTime fechaCreacion;
 }

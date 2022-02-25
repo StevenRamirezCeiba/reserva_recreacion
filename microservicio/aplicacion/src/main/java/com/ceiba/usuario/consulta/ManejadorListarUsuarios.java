@@ -17,4 +17,6 @@ public class ManejadorListarUsuarios {
     }
 
     public List<DtoUsuario> ejecutar(){ return this.daoUsuario.listar(); }
+
+    public DtoUsuario encontrarPorNumeroDocumento(Long numeroDocumento){return this.daoUsuario.encontrarPorNumeroDocumento(numeroDocumento);}
 }

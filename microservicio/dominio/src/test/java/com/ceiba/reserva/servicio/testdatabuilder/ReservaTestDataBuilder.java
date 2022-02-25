@@ -9,12 +9,14 @@ public class ReservaTestDataBuilder {
 
 	private Long id;
 	private BigDecimal valor;
+	private LocalDateTime fechaCreacion;
 	private LocalDateTime fechaReserva;
 	private Long usuarioId;
 	private Long reservaEstadoId;
 	
 	public ReservaTestDataBuilder() {
 		valor = new BigDecimal(50000);
+		fechaCreacion = LocalDateTime.now();
 		fechaReserva = LocalDateTime.now().plusDays(3);
 		usuarioId = 1L;
 		reservaEstadoId = 1L;
@@ -29,7 +31,12 @@ public class ReservaTestDataBuilder {
 		this.valor = valor;
 		return this;
 	}
-	
+
+	public ReservaTestDataBuilder conFechaCreacion(LocalDateTime fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+		return this;
+	}
+
 	public ReservaTestDataBuilder conFechaReserva(LocalDateTime fechaReserva) {
 		this.fechaReserva = fechaReserva;
 		return this;
@@ -46,6 +53,6 @@ public class ReservaTestDataBuilder {
 	}
 	
 	public Reserva build() {
-		return new Reserva(id, valor, fechaReserva, usuarioId, reservaEstadoId);
+		return new Reserva(id, valor, fechaCreacion, fechaReserva, usuarioId, reservaEstadoId);
 	}
 }

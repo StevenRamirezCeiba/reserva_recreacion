@@ -8,6 +8,8 @@ import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class ManejadorCrearReserva implements ManejadorComandoRespuesta<ComandoReserva, ComandoRespuesta<Long>> {
 
@@ -20,6 +22,7 @@ public class ManejadorCrearReserva implements ManejadorComandoRespuesta<ComandoR
     }
 
     public ComandoRespuesta<Long> ejecutar(ComandoReserva comandoReserva) {
+        comandoReserva.setFechaCreacion(LocalDateTime.now());
         Reserva reserva = this.fabricaReserva.crear(comandoReserva);
         return new ComandoRespuesta<>(this.servicioCrearReserva.ejecutar(reserva));
     }

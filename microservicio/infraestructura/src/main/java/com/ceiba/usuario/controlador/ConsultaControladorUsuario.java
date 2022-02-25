@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ceiba.usuario.consulta.ManejadorListarUsuarios;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,12 @@ public class ConsultaControladorUsuario {
     @ApiOperation("Listar Usuarios")
     public List<DtoUsuario> listar() {
         return this.manejadorListarUsuarios.ejecutar();
+    }
+
+    @GetMapping(value = "/{numeroDocumento}")
+    @ApiOperation("Encontrar un usuario por su numero de documento")
+    public DtoUsuario encontrarPorNumeroDocumento(@PathVariable Long numeroDocumento) {
+        return this.manejadorListarUsuarios.encontrarPorNumeroDocumento(numeroDocumento);
     }
 
 }

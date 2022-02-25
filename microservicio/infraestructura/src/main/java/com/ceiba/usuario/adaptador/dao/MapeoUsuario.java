@@ -10,6 +10,16 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class MapeoUsuario implements RowMapper<DtoUsuario>, MapperResult {
 
+    private boolean isCategoriaNombre;
+
+    public MapeoUsuario(boolean isCategoriaNombre) {
+        this.isCategoriaNombre = isCategoriaNombre;
+    }
+
+    public MapeoUsuario() {
+        this.isCategoriaNombre = false;
+    }
+
     @Override
     public DtoUsuario mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
@@ -19,9 +29,13 @@ public class MapeoUsuario implements RowMapper<DtoUsuario>, MapperResult {
         Long numeroDocumento = resultSet.getLong("numero_documento");
         Integer reservasAcumulado = resultSet.getInt("reservas_acumulado");
         Long categoriaId = resultSet.getLong("categoria_id");
+        String categoriaNombre = null;
         LocalDateTime fecha = extraerLocalDateTime(resultSet, "fecha_creacion");
 
-        return new DtoUsuario(id,nombre,apellido,numeroDocumento,reservasAcumulado,categoriaId,fecha);
+        if (isCategoriaNombre) categoriaNombre = resultSet.getString("categoria_nombre");
+
+
+        return new DtoUsuario(id,nombre,apellido,numeroDocumento,reservasAcumulado,categoriaId,categoriaNombre,fecha);
     }
 
 }

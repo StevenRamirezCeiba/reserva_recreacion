@@ -31,13 +31,13 @@ public class ReservaTest {
 	}
 
 	@Test
-	void deberiaFallarSinValor() {
+	void deberiaFallarSinFechaCreacion() {
 		// arrange
-		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conValor(null).conId(1L);
+		ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conFechaCreacion(null).conId(1L);
 		// act-assert
 		BasePrueba.assertThrows(() -> {
 			reservaTestDataBuilder.build();
-		}, ExcepcionValorObligatorio.class, "Se debe ingresar el valor");
+		}, ExcepcionValorObligatorio.class, "Se debe ingresar la fecha de creación");
 	}
 
 	@Test

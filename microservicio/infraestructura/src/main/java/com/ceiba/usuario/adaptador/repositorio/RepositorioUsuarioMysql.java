@@ -10,8 +10,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.List;
 
 @Repository
 public class RepositorioUsuarioMysql implements RepositorioUsuario {
@@ -27,11 +25,11 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @SqlStatement(namespace="usuario", value="eliminar")
     private static String sqlEliminar;
 
-    @SqlStatement(namespace="usuario", value="existePorNumeroDocumento")
-    private static String sqlExistePorNumeroDocumento;
-
     @SqlStatement(namespace="usuario", value="existePorId")
     private static String sqlExistePorId;
+
+    @SqlStatement(namespace="usuario", value="existePorNumeroDocumento")
+    private static String sqlExistePorNumeroDocumento;
     
     @SqlStatement(namespace="usuario", value="encontrarPorId")
     private static String sqlEncontrarPorId;
@@ -52,14 +50,6 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     }
 
     @Override
-    public boolean existePorNumeroDocumento(Long numeroDocumento) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("numeroDocumento", numeroDocumento);
-
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorNumeroDocumento,paramSource, Boolean.class);
-    }
-
-    @Override
     public void actualizar(Usuario usuario) {
         this.customNamedParameterJdbcTemplate.actualizar(usuario, sqlActualizar);
     }
@@ -71,6 +61,14 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
        
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,paramSource, Boolean.class);
     }
+    @Override
+    public boolean existePorNumeroDocumento(Long numeroDocumento) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("numeroDocumento", numeroDocumento);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorNumeroDocumento,paramSource, Boolean.class);
+    }
+
     
     @Override
     public DtoUsuario encontrarPorId(Long id) {
