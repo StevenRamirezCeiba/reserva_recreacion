@@ -7,6 +7,7 @@ import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
+import com.ceiba.usuario.servicio.ServicioListarUsuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,6 +22,11 @@ public class BeanServicio {
     @Bean
     public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioActualizarUsuario(repositorioUsuario);
+    }
+
+    @Bean
+    public ServicioListarUsuario servicioListarUsuario(RepositorioUsuario repositorioUsuario) {
+        return new ServicioListarUsuario(repositorioUsuario);
     }
 	
     @Bean

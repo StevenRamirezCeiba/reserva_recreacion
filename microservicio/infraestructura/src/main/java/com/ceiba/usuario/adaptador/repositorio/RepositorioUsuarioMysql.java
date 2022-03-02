@@ -40,6 +40,9 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @SqlStatement(namespace="usuario", value="obtenerTarifaPorUsuarioId")
     private static String sqlObtenerTarifaPorUsuarioId;
 
+    @SqlStatement(namespace="usuario", value="encontrarPorNumeroDocumento")
+    private static String sqlEncontrarPorNumeroDocumento;
+
     public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -94,5 +97,13 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerTarifaPorUsuarioId, paramSource, BigDecimal.class);
 
+    }
+
+    @Override
+    public DtoUsuario encontrarPorNumeroDocumento(Long numeroDocumento) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("numeroDocumento", numeroDocumento);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEncontrarPorNumeroDocumento,paramSource, new MapeoUsuario(true));
     }
 }

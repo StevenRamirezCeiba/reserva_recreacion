@@ -52,4 +52,10 @@ public interface RepositorioUsuario {
      */
     BigDecimal obtenerTarifaPorUsuarioId(Long id);
 
+    /**
+     * Encuenta un usuario por su numero de documento
+     * @param numeroDocumento
+     * @return
+     */
+    DtoUsuario encontrarPorNumeroDocumento(Long numeroDocumento);
 }
