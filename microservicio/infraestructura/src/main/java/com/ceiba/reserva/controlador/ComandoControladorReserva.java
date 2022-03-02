@@ -30,14 +30,12 @@ public class ComandoControladorReserva {
 	@PostMapping
     @ApiOperation("Crear Reserva")
     public ComandoRespuesta<Long> crear(@RequestBody ComandoReserva comandoReserva) {
-		System.out.println(comandoReserva.toString());
         return manejadorCrearReserva.ejecutar(comandoReserva);
     }
 
-	@PutMapping(value = "/{id}")
+	@PutMapping
 	@ApiOperation("Actualizar Reserva")
-	public void actualizar(@RequestBody ComandoReserva comandoReserva,@PathVariable Long id) {
-		comandoReserva.setId(id);
+	public void actualizar(@RequestBody ComandoReserva comandoReserva) {
 		manejadorActualizarReserva.ejecutar(comandoReserva);
 	}
 

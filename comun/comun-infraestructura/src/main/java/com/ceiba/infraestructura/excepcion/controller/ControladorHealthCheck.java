@@ -1,4 +1,4 @@
-package com.ceiba.infraestructura.controller;
+package com.ceiba.infraestructura.excepcion.controller;
 
 import java.util.List;
 

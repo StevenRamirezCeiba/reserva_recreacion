@@ -4,10 +4,7 @@ import com.ceiba.reserva.consulta.ManejadorListarReservas;
 import com.ceiba.reserva.modelo.dto.DtoReserva;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +26,9 @@ public class ConsultaControladorReserva {
 		return this.manejadorListarReservas.ejecutar();
 	}
 
+	@GetMapping(value = "/{numeroDocumento}")
+	@ApiOperation("Listar Reservas por usuario numero documento")
+	public List<DtoReserva> listarReservasPorUsuarioNumeroDocumento(@PathVariable Long numeroDocumento) {
+		return this.manejadorListarReservas.listarReservasPorUsuarioNumeroDocumento(numeroDocumento);
+	}
 }

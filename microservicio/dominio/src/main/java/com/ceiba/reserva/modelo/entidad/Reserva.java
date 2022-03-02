@@ -30,7 +30,7 @@ public class Reserva {
 	public Reserva(Long id, BigDecimal valor, LocalDateTime fechaCreacion, LocalDateTime fechaReserva, Long usuarioId, Long reservaEstadoId) {
 		validarObligatorio(fechaCreacion, SE_DEBE_INGRESAR_LA_FECHA_CREACION);
 		validarObligatorio(fechaReserva, SE_DEBE_INGRESAR_LA_FECHA_RESERVA);
-		validarMenor(LocalDateTime.now(), fechaReserva, LA_FECHA_DE_RESERVA_DEBE_SER_MAYOR_A_LA_FECHA_ACTUAL);
+		validarMenor(fechaCreacion, fechaReserva, LA_FECHA_DE_RESERVA_DEBE_SER_MAYOR_A_LA_FECHA_ACTUAL);
 		validarObligatorio(usuarioId, SE_DEBE_INGRESAR_USUARIO_ID);
 		validarObligatorio(reservaEstadoId, SE_DEBE_INGRESAR_RESERVA_ESTADO_ID);
 		

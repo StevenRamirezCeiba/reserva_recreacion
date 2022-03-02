@@ -1,2 +1,2 @@
-select id,valor,fecha_creacion,fecha_reserva,usuario_id
+select id,valor,fecha_creacion,fecha_reserva,usuario_id,reserva_estado_id
 from reserva

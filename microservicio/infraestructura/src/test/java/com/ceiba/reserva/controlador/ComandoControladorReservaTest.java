@@ -51,10 +51,9 @@ class ComandoControladorReservaTest {
     @DisplayName("Deberia actualizar una reserva")
     void deberiaActualizarUnaReserva() throws Exception{
         // arrange
-        Long id = 1L;
-        ComandoReserva reserva = new ComandoReservaTestDataBuilder().build();
+        ComandoReserva reserva = new ComandoReservaTestDataBuilder().conId(1L).build();
         // act - assert
-        mocMvc.perform(put("/reservas/{id}",id)
+        mocMvc.perform(put("/reservas")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(reserva)))
                 .andExpect(status().isOk());

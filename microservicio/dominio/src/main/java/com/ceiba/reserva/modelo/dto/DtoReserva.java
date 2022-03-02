@@ -15,4 +15,6 @@ public class DtoReserva {
 	private LocalDateTime fechaCreacion;
 	private LocalDateTime fechaReserva;
 	private Long usuarioId;
+	private Long reservaEstadoId;
+	private String reservaEstadoNombre;
 }

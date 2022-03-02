@@ -19,7 +19,7 @@ public class ServicioListarUsuario {
         return repositorioUsuario.encontrarPorNumeroDocumento(numeroDocumento);
     }
 
-    private void validarExistenciaPrevia(Long numeroDocumento) {
+    public void validarExistenciaPrevia(Long numeroDocumento) {
         boolean existe = this.repositorioUsuario.existePorNumeroDocumento(numeroDocumento);
         if(!existe) {
             throw new ExcepcionSinDatos(EL_USUARIO_CON_ESTE_NUMERO_DE_DOCUMENTO_NO_EXISTE_EN_EL_SISTEMA);
