@@ -21,12 +21,6 @@ public interface RepositorioReserva {
     void actualizar(Reserva reserva);
 
     /**
-     * Permite eliminar una reserva
-     * @param id
-     */
-    void eliminar(Long id);
-
-    /**
      * Permite validar si existe una reserva por id
      * @param id
      */
