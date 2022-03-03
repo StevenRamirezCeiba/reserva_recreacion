@@ -80,6 +80,6 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("numeroDocumento", numeroDocumento);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarPorUsuarioNumeroDocumento, parameterSource, new MapeoReserva(true));
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarPorUsuarioNumeroDocumento, parameterSource, new MapeoReserva());
     }
 }

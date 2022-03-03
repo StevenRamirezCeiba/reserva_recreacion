@@ -31,11 +31,12 @@ class ConsultaControladorReservaTest {
     private MockMvc mocMvc;
 
     @Test
-    @DisplayName("Deberia listar reservas")
-    void deberiaListarReservas() throws Exception {
+    @DisplayName("Deberia listar reservas por numero documento usuario")
+    void deberiaListarReservasPorNumeroDocumentoUsuario() throws Exception {
         // arrange
+        Long numeroDocumento = 123456789L;
         // act - assert
-        mocMvc.perform(get("/reservas")
+        mocMvc.perform(get("/reservas/{numeroDocumento}", numeroDocumento)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))

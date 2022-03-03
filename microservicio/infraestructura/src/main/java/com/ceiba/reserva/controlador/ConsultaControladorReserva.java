@@ -20,12 +20,6 @@ public class ConsultaControladorReserva {
 		this.manejadorListarReservas = manejadorListarReservas;
 	}
 
-	@GetMapping
-	@ApiOperation("Listar Reservas")
-	public List<DtoReserva> listar() {
-		return this.manejadorListarReservas.ejecutar();
-	}
-
 	@GetMapping(value = "/{numeroDocumento}")
 	@ApiOperation("Listar Reservas por usuario numero documento")
 	public List<DtoReserva> listarReservasPorUsuarioNumeroDocumento(@PathVariable Long numeroDocumento) {

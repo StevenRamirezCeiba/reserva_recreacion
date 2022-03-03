@@ -50,7 +50,6 @@ class ConsultaControladorUsuarioTest {
         mocMvc.perform(get("/usuarios/{numeroDocumento}", numeroDocumento)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                // .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$.nombre", is("test")))
                 .andExpect(jsonPath("$.id", is(1)));
 
